@@ -35,6 +35,7 @@ export default class Contact extends React.Component {
 
     render() {
         const { name, phone } = this.state
+        const hideMainContactStyles = name === 'Основной' ? { 'display': 'none' } : {}
         return (<div className="bContact">
             <div className="bContact__section">
                 <button
@@ -49,11 +50,11 @@ export default class Contact extends React.Component {
             </div>
 
             <div className="bContact__section">
-                <div className="bContact__action">
+                <div className="bContact__action" style={hideMainContactStyles}>
                     <button className="bEditContactButton"
                         onClick={this.onEdit}></button>
                 </div>
-                <div className="bContact__action">
+                <div className="bContact__action" style={hideMainContactStyles}>
                     <button className="bRemoveContactButton"
                         onClick={this.clickRemove}></button>
                 </div>

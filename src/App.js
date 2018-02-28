@@ -4,37 +4,58 @@ import './App.css'
 import Contact from './components/Contact'
 import Splash from './components/Splash'
 
-const fakeContacts = [
-  { _id: '111', name: 'Основной', phone: '+7 (771) 111-11-11' },
-  { _id: '222', name: 'Приёмная', phone: '+7 (772) 222-22-22' },
-  { _id: '333', name: 'Отдел закупок', phone: '+7 (773) 333-33-33' }
-]
+import { fetchContacts, callbackToContact } from './api'
 
 class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = { calling: false, name: '' }
+    console.info('⚒ Contacts list for', this.props.customer)
+    this.state = { calling: false, name: '', contacts: [] }
+
     this.onCallback = this.onCallback.bind(this)
+    this.onRemove = this.onRemove.bind(this)
+  }
+
+  componentDidMount() {
+    const customerID = this.props.customer
+    const token = this.props.msid
+    fetchContacts({ customerID, token })
+      .then(contacts => this.setState({ contacts }))
+      .catch(error => console.error('💩', error.message))
   }
 
   onCallback({ contactID, name }) {
+    const token = this.props.msid
     this.setState({ calling: true, name })
-    console.log('Emitted from', contactID, name)
+    callbackToContact({ contactID, token })
+      .then(callback => {
+        this.setState({ calling: false, name: '' })
+        console.info('⚒ Callback response', callback.response)
+      })
+      .catch(error => {
+        console.error('💩', error.message)
+        this.setState({ calling: false, name: '' }, () => alert(error.message))
+      })
+  }
+
+  onRemove({ contactID }) {
+    console.log('remove emitted for', contactID)
   }
 
   render() {
-    const { calling, name } = this.state
+    const { calling, name, contacts } = this.state
     return (
       <div className="App">
         {calling && <Splash title={name} />}
-        {fakeContacts.map(contact => <Contact
+        {contacts.length === 0 && <div className="bContactsPreloader"></div>}
+        {contacts.map(contact => <Contact
           key={Math.random()}
           name={contact.name}
           phone={contact.phone}
           contactID={contact._id}
           onCallback={this.onCallback}
-          onRemove={this.onCallback} />)}
+          onRemove={this.onRemove} />)}
       </div>
     );
   }
