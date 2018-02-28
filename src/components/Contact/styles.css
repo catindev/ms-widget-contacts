@@ -1,0 +1,67 @@
+.bContact {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  padding: 5px 2px 0;
+  /* margin-bottom: 10px; */
+}
+
+.bContact__section {
+  /* border: 1px dotted red; */
+}
+
+.bContact__main {
+  flex-grow: 1;
+  padding: 3px;
+}
+
+.bCallbackToContactButton {
+  width: 50px;
+  height: 50px;
+  background: url(http://new.mindsales-crm.com/static/common/callback-icon.svg?1502294671905) no-repeat top center;
+  border: 0;
+  outline: none;
+}
+
+.bEditContactButton {
+  width: 25px;
+  height: 25px;
+  background: url(https://cdn.glitch.com/9224a748-3da6-4420-aa98-e477aa8f729c%2Fedit_button.svg?1519815634046) no-repeat top center;
+  border: 0;
+  outline: none;
+  background-size: 25px 25px;
+}
+
+.bRemoveContactButton {
+  width: 25px;
+  height: 25px;
+  background: url(https://cdn.glitch.com/9224a748-3da6-4420-aa98-e477aa8f729c%2Fdelete_button.svg?1519815634280) no-repeat top center;
+  border: 0;
+  outline: none;
+  background-size: 25px 25px;
+  opacity: .7;
+}
+
+.bContact__name {
+  font-size: 18px;
+  line-height: 20px;
+  padding: 2px 0;
+  max-width: 180px;
+
+  /* white-space: nowrap;
+  white-space: pre;
+  overflow: hidden; 
+  text-overflow: ellipsis; */
+}
+
+.bContact__phone {
+  border-spacing: 0;
+  padding-bottom: .5rem;
+  font-size: 14px;
+  color: #9B9B9B;
+}
+
+.bContact__action {
+  display: inline-block;
+  padding: 5px;
+  padding-right: 8px;
+}
