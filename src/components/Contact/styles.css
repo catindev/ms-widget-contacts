@@ -14,6 +14,13 @@
   padding: 3px;
 }
 
+.bCBW {
+  /* min-width: 50px;
+  max-width: 50px; */
+  flex-basis: 50px;
+  /* flex-grow: 1; */
+}
+
 .bCallbackToContactButton {
   width: 50px;
   height: 50px;

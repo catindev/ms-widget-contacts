@@ -1,6 +1,8 @@
 .bCallbackLayout {
-    z-index: 9999;
     position: fixed;
+    left: 0;
+    top:0;
+    z-index: 9999;
     width: 100%;
     height: 100%;
     background: rgba(53,59,63,.95) url('https://cdn.glitch.com/9224a748-3da6-4420-aa98-e477aa8f729c%2Floader.svg?1519828887213') center center no-repeat;

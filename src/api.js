@@ -14,7 +14,7 @@ function fetchContacts({ customerID, token }) {
 }
 
 function removeContact({ contactID, token }) {
-    return fetch(`${API_HOST}/contacts/${contactID}/contacts?token=${token}`, {
+    return fetch(`${API_HOST}/contacts/${contactID}?token=${token}`, {
         method: 'delete', headers: { 'Content-type': 'application/json' }
     })
         .then(response => response.json())

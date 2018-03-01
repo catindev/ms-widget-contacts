@@ -4,7 +4,7 @@ import './App.css'
 import Contact from './components/Contact'
 import Splash from './components/Splash'
 
-import { fetchContacts, callbackToContact } from './api'
+import { fetchContacts, removeContact, callbackToContact } from './api'
 
 class App extends Component {
 
@@ -40,7 +40,13 @@ class App extends Component {
   }
 
   onRemove({ contactID }) {
-    console.log('remove emitted for', contactID)
+    const token = this.props.msid
+    removeContact({ contactID, token })
+      .then(status => {
+        window.location.reload()
+        console.info('⚒ Remove status', status)
+      })
+      .catch(error => console.error('💩', error.message))
   }
 
   render() {
